@@ -88,7 +88,7 @@ namespace WSLogisticaEmpresa.Services
         /// </summary>
         /// <param name="TipoProductos"></param>
         /// <returns></returns>
-        public string AddTipoProductos(TipoProductos TipoProductos)
+        public TipoProductos AddTipoProductos(TipoProductos TipoProductos)
         {
             _connectionBd = new ConnectionBd();
             resultado = new TipoProductos();
@@ -116,12 +116,12 @@ namespace WSLogisticaEmpresa.Services
                     //se cierra conexión
                     _connection.Close();
                 }
-                return "cliente Almacenado Id " + id;
+                return resultado;
 
             }
             catch (Exception ex)
             {
-                return "Error cliente No Almacenado " + ex;
+                return null;
 
             }
             finally
@@ -142,7 +142,7 @@ namespace WSLogisticaEmpresa.Services
         /// </summary>
         /// <param name="TipoProductos"></param>
         /// <returns></returns>
-        public string UpdateTipoProductos(TipoProductos TipoProductos)
+        public TipoProductos UpdateTipoProductos(TipoProductos TipoProductos)
         {
             _connectionBd = new ConnectionBd();
             resultado = new TipoProductos();
@@ -157,16 +157,17 @@ namespace WSLogisticaEmpresa.Services
                     _command.Parameters.AddWithValue("@IdTipoProducto", SqlDbType.Int).Value = TipoProductos.IdTipoProducto;
                     _command.Parameters.AddWithValue("@TipoProducto", SqlDbType.VarChar).Value = TipoProductos.TipoProducto;
                     _command.Parameters.AddWithValue("@TipoLogistica", SqlDbType.VarChar).Value = TipoProductos.TipoLogistica;
+                    _connection.Open();
                     dr = _command.ExecuteReader();
                     //se cierra conexión
                     _connection.Close();
                 }
-                return "cliente Actualizado";
+                return resultado;
 
             }
             catch (Exception ex)
             {
-                return "Error cliente No Actualizado " + ex;
+                return null;
 
             }
             finally
@@ -187,7 +188,7 @@ namespace WSLogisticaEmpresa.Services
         /// </summary>
         /// <param name="IdCliente"></param>
         /// <returns></returns>
-        public string DeleteTipoProductos(int IdTipoProducto)
+        public TipoProductos DeleteTipoProductos(int IdTipoProducto)
         {
             _connectionBd = new ConnectionBd();
             resultado = new TipoProductos();
@@ -205,12 +206,12 @@ namespace WSLogisticaEmpresa.Services
                     //se cierra conexión
                     _connection.Close();
                 }
-                return "cliente Eliminado";
+                return resultado;
 
             }
             catch (Exception ex)
             {
-                return "Error cliente No Eliminado " + ex;
+                return null;
 
             }
             finally

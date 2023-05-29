@@ -43,7 +43,7 @@ namespace WSLogisticaEmpresa.Controllers
         [Route("addTipoProductos")]
         public IActionResult addTipoProductos(TipoProductos TipoProductos)
         {
-            string resultado;
+            TipoProductos resultado;
             resultado = _TipoProductosService.AddTipoProductos(TipoProductos);
             return Ok(resultado);
         }
@@ -57,7 +57,7 @@ namespace WSLogisticaEmpresa.Controllers
         [Route("updateTipoProductos")]
         public IActionResult updateTipoProductos(TipoProductos TipoProductos)
         {
-            string resultado;
+            TipoProductos resultado;
             resultado = _TipoProductosService.UpdateTipoProductos(TipoProductos);
             return Ok(resultado);
         }
@@ -71,7 +71,7 @@ namespace WSLogisticaEmpresa.Controllers
         [Route("deleteTipoProductos")]
         public IActionResult deleteTipoProductos(int Id)
         {
-            string resultado;
+            TipoProductos resultado;
             resultado = _TipoProductosService.DeleteTipoProductos(Id);
             return Ok(resultado);
         }

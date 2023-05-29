@@ -43,7 +43,7 @@ namespace WSLogisticaEmpresa.Controllers
         [Route("addPlanes")]
         public IActionResult addPlanes(Planes Planes)
         {
-            string resultado;
+            Planes resultado;
             resultado = _PlanesService.AddPlanes(Planes);
             return Ok(resultado);
         }
@@ -57,7 +57,7 @@ namespace WSLogisticaEmpresa.Controllers
         [Route("updatePlanes")]
         public IActionResult updatePlanes(Planes Planes)
         {
-            string resultado;
+            Planes resultado;
             resultado = _PlanesService.UpdatePlanes(Planes);
             return Ok(resultado);
         }
@@ -71,7 +71,7 @@ namespace WSLogisticaEmpresa.Controllers
         [Route("deletePlanes")]
         public IActionResult deletePlanes(int Id)
         {
-            string resultado;
+            Planes resultado;
             resultado = _PlanesService.DeletePlanes(Id);
             return Ok(resultado);
         }

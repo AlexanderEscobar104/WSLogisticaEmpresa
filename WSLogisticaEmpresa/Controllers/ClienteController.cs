@@ -43,7 +43,7 @@ namespace WSLogisticaEmpresa.Controllers
         [Route("addClientes")]
         public IActionResult addClientes(Clientes Clientes)
         {
-            string resultado;
+            Clientes resultado;
             resultado = _ClientesService.AddClientes(Clientes);
             return Ok(resultado);
         }
@@ -57,7 +57,7 @@ namespace WSLogisticaEmpresa.Controllers
         [Route("updateClientes")]
         public IActionResult updateClientes(Clientes Clientes)
         {
-            string resultado;
+            Clientes resultado;
             resultado = _ClientesService.UpdateClientes(Clientes);
             return Ok(resultado);
         }
@@ -71,7 +71,7 @@ namespace WSLogisticaEmpresa.Controllers
         [Route("deleteClientes")]
         public IActionResult deleteClientes(int Id)
         {
-            string resultado;
+            Clientes resultado;
             resultado = _ClientesService.DeleteClientes(Id);
             return Ok(resultado);
         }

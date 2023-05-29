@@ -6,5 +6,6 @@
         public string TipoProducto { get; set; }
         public string TipoLogistica { get; set; }
 
+
     }
 }

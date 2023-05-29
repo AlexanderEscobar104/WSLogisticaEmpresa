@@ -62,6 +62,8 @@ namespace WSLogisticaEmpresa.Services
                         Planes.NumeroGuia = dr["NumeroGuia"].ToString()!;
                         Planes.TipoLogistica = dr["TipoLogistica"].ToString()!;
                         Planes.Placa = dr["Placa"].ToString()!;
+                        Planes.Nombres = dr["Nombres"].ToString()!;
+                        Planes.TipoProducto = dr["TipoProducto"].ToString()!;
 
                         clienteList.Add(Planes);
                     }
@@ -94,12 +96,12 @@ namespace WSLogisticaEmpresa.Services
         /// </summary>
         /// <param name="Planes"></param>
         /// <returns></returns>
-        public string AddPlanes(Planes Planes)
+        public Planes AddPlanes(Planes Planes)
         {
             _connectionBd = new ConnectionBd();
             resultado = new Planes();
             SqlDataReader dr = null;
-            int id = 0;
+            Int64 id = 0;
             try
             {
 
@@ -125,18 +127,19 @@ namespace WSLogisticaEmpresa.Services
                     dr = _command.ExecuteReader();
                     foreach (DbDataRecord dbDR in dr)
                     {
-                        id = dbDR.GetInt32(0);
+                        id = dbDR.GetInt64(0);
+                      
 
                     }
                     //se cierra conexión
                     _connection.Close();
                 }
-                return "cliente Almacenado Id " + id;
+                return resultado;
 
             }
             catch (Exception ex)
             {
-                return "Error cliente No Almacenado " + ex;
+                return null;
 
             }
             finally
@@ -157,7 +160,7 @@ namespace WSLogisticaEmpresa.Services
         /// </summary>
         /// <param name="Planes"></param>
         /// <returns></returns>
-        public string UpdatePlanes(Planes Planes)
+        public Planes UpdatePlanes(Planes Planes)
         {
             _connectionBd = new ConnectionBd();
             resultado = new Planes();
@@ -182,16 +185,17 @@ namespace WSLogisticaEmpresa.Services
                     _command.Parameters.AddWithValue("@NumeroGuia", SqlDbType.VarChar).Value = Planes.NumeroGuia;
                     _command.Parameters.AddWithValue("@TipoLogistica", SqlDbType.VarChar).Value = Planes.TipoLogistica;
                     _command.Parameters.AddWithValue("@Placa", SqlDbType.VarChar).Value = Planes.Placa;
+                    _connection.Open();
                     dr = _command.ExecuteReader();
                     //se cierra conexión
                     _connection.Close();
                 }
-                return "cliente Actualizado";
+                return resultado;
 
             }
             catch (Exception ex)
             {
-                return "Error cliente No Actualizado " + ex;
+                return null;
 
             }
             finally
@@ -212,7 +216,7 @@ namespace WSLogisticaEmpresa.Services
         /// </summary>
         /// <param name="IdCliente"></param>
         /// <returns></returns>
-        public string DeletePlanes(int IdPlanEntrega)
+        public Planes DeletePlanes(int IdPlanEntrega)
         {
             _connectionBd = new ConnectionBd();
             resultado = new Planes();
@@ -230,12 +234,12 @@ namespace WSLogisticaEmpresa.Services
                     //se cierra conexión
                     _connection.Close();
                 }
-                return "cliente Eliminado";
+                return resultado;
 
             }
             catch (Exception ex)
             {
-                return "Error cliente No Eliminado " + ex;
+                return null;
 
             }
             finally

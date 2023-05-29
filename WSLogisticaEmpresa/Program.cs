@@ -14,6 +14,7 @@ builder.Services.AddScoped<ClientesServices, ClientesServices>();
 builder.Services.AddScoped<PlanesServices, PlanesServices>();
 builder.Services.AddScoped<TipoProductoServices, TipoProductoServices>();
 
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -86,6 +87,18 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors(builder =>
+{
+    builder
+       .WithOrigins("http://localhost:4200", "https://localhost:4200")
+       .SetIsOriginAllowedToAllowWildcardSubdomains()
+       .AllowAnyHeader()
+       .AllowCredentials()
+       .WithMethods("GET", "PUT", "POST", "DELETE", "OPTIONS")
+       .SetPreflightMaxAge(TimeSpan.FromSeconds(3600));
+}
+);
+
 app.MapPost("/security/createToken",
 [AllowAnonymous] (User user) =>
 {
@@ -120,6 +133,8 @@ app.MapPost("/security/createToken",
     }
     return Results.Unauthorized();
 });
+
+
 app.UseAuthentication();
 app.UseAuthorization();
 

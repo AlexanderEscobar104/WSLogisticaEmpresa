@@ -11,9 +11,12 @@
         public string PuertoEnvio { get; set; }
         public int PrecioEnvio { get; set; }
         public int Descuento { get; set; }
-        public string NumeroFlota { get; set; }
+        public string? NumeroFlota { get; set; }
         public string NumeroGuia { get; set; }
         public string TipoLogistica { get; set; }
-        public string Placa { get; set; }
+        public string? Placa { get; set; }
+        public string? Nombres { get; set; }
+        public string? TipoProducto { get; set; }
+
     }
 }
