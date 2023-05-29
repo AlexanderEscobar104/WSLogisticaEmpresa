@@ -2,7 +2,7 @@
 {
     public class Planes
     {
-        public int IdPlanEntrega { get; set; }
+        public Int64 IdPlanEntrega { get; set; }
         public int IdCliente { get; set; }
         public int IdTipoProducto { get; set; }
         public int Cantidad { get; set; }

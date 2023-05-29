@@ -127,9 +127,8 @@ namespace WSLogisticaEmpresa.Services
                     dr = _command.ExecuteReader();
                     foreach (DbDataRecord dbDR in dr)
                     {
-                        id = dbDR.GetInt64(0);
+                        resultado.IdPlanEntrega = dbDR.GetInt64(0);
                       
-
                     }
                     //se cierra conexión
                     _connection.Close();
@@ -187,6 +186,7 @@ namespace WSLogisticaEmpresa.Services
                     _command.Parameters.AddWithValue("@Placa", SqlDbType.VarChar).Value = Planes.Placa;
                     _connection.Open();
                     dr = _command.ExecuteReader();
+                    resultado.IdPlanEntrega = Planes.IdPlanEntrega;
                     //se cierra conexión
                     _connection.Close();
                 }
@@ -231,6 +231,9 @@ namespace WSLogisticaEmpresa.Services
                     _command.Parameters.AddWithValue("@IdPlanEntrega", SqlDbType.Int).Value = IdPlanEntrega;
                     _connection.Open();
                     dr = _command.ExecuteReader();
+                   
+                    resultado.IdPlanEntrega = IdPlanEntrega;
+
                     //se cierra conexión
                     _connection.Close();
                 }
